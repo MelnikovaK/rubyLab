@@ -1,0 +1,84 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>Список вкладов и вкладчиков</h3>
+  </div>
+</div>
+
+<div class="grid-x grid-padding-x">
+  <div class="large-10 cell">
+    <h4>Вклады</h4>
+  </div>
+</div>
+<div class="grid-x grid-padding-x">
+  <% @deposits.each.with_index do |deposit, index| %>
+      <div class="large-1 cell">
+        <%= index + 1 %>
+      </div>
+      <div class="large-9 cell">
+        <%= deposit.type %>
+      </div>
+      <div class="large-2 cell">
+        <a id="edit-deposit-<%= index %>" href="deposits/del/<%= index %>">удалить</a>
+      </div>
+  <% end %>
+  <br>
+  <br>
+  <div class="large-12 cell">
+    <a href="/deposits/new" class="button success">Добавить тип вклада</a>
+  </div>
+</div>
+<hr>
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h4>Вкладчики</h4>
+  </div>
+</div>
+
+<div class="grid-x grid-padding-x">
+  <div class="medium-2 cell">
+    <label>Нижняя сумма
+      <input type="number" placeholder="тип" name="low_n">
+    </label>
+  </div>
+  <div class="medium-2 cell">
+    <label>Верхняя сумма
+      <input type="number" placeholder="12" name="high_n">
+    </label>
+  </div>
+  <div class="large-2 cell">
+    <a href="/depositors/calc_dep_amount" class="button success">Показать вклады</a>
+  </div>
+  <div class="large-2 cell">
+    <a href="/" class="button success">Сбросить</a>
+  </div>
+</div>
+
+
+
+<div class="grid-x grid-padding-x">
+<div class="large-12 cell">
+<a href="/depositors/sort" class="button success">Сортировать по фамилии</a>
+</div>
+<% @depositors.each.with_index do |depositor, index| %>
+  <div class="large-1 cell">
+    <%= index + 1 %>
+  </div>
+  <div class="large-4 cell">
+    <%= depositor.last_name %>
+  </div>
+  <div class="large-5 cell">
+    <%= depositor.dep_amount %>Р
+  </div>
+  <div class="large-2 cell">
+    <a id="edit-depositor-<%= index %>" href="depositors/del/<%= index %>">удалить</a>
+  </div>
+<% end %>
+<br>
+<br>
+<div class="large-2 cell">
+    <a href="/depositors/new" class="button success">Добавить вкладчика</a>
+</div>
+<br>
+<br>
+<br>
+</div>

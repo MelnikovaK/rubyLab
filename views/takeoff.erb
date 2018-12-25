@@ -1,0 +1,30 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>
+      Снятие процентов
+    </h3>
+  </div>
+</div>
+
+<form method="post">
+  <div class="grid-x grid-padding-x">
+    <div class="medium-9 cell">
+      <label>Номер счета
+        <input type="number" placeholder="12" name="dep_number">
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="lagre-12 cell">
+      <input type="submit" value="Снять" class="button success">
+    </div>
+  </div>
+</form>
+<div class="grid-x grid-padding-x">
+    <div class="medium-9 cell">
+      <label>Вы получили:</label>
+      <label>
+      <%= @percents %>Р
+      </label>
+    </div>
+  </div>

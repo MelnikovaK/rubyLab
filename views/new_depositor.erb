@@ -1,0 +1,63 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>
+      Введите данные для добавленя нового вкладчика
+    </h3>
+  </div>
+</div>
+
+<form method="post">
+  <div class="grid-x grid-padding-x">
+    <div class="medium-6 cell">
+      <label>Фамилия вкладчика
+        <input type="text" placeholder="тип" name="l_name">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Имя вкладчика
+        <input type="text" placeholder="тип" name="f_name">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Отчество вкладчика
+        <input type="text" placeholder="тип" name="m_name">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Номер вклада
+        <input type="text" placeholder="тип" name="dep_number">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Тип вклада
+      <select name="dep_type">
+      <% @deposits.each.with_index do |deposit, index| %>
+      <option><%= deposit.type %></option>
+      <%end%>
+     </select>
+      </label>
+    </div>
+    <div class="medium-6 cell">
+    <label>Сумма вклада
+      <input type="text" placeholder="тип" name="dep_amount">
+    </label>
+  </div>
+  <div class="medium-6 cell">
+    <select name="pos_of_replenishment">
+      <option>2018</option>
+      <option>2017</option>
+      <option>2016</option>
+      <option>2015</option>
+      <option>2014</option>
+      <option>2013</option>
+      <option>2012</option>
+      <option>2011</option>
+      <option>2010</option>
+    </select>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="lagre-12 cell">
+      <input type="submit" value="Добавить" class="button success">
+    </div>
+  </div>
+</form>

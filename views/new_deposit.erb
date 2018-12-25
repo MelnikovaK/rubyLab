@@ -1,0 +1,35 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>
+      Введите данные для добавленя нового типа вклада
+    </h3>
+  </div>
+</div>
+
+<form method="post">
+  <div class="grid-x grid-padding-x">
+    <div class="medium-6 cell">
+      <label>Название депозита
+        <input type="text" placeholder="тип" name="type">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Процент
+        <input type="number" placeholder="12" name="percent">
+      </label>
+    </div>
+    <div class="medium-6 cell">
+      <label>Возможность пополнения
+        <select name="pos_of_replenishment">
+        <option>Да</option>
+        <option>Нет</option>
+       </select>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="lagre-12 cell">
+      <input type="submit" value="Добавить" class="button success">
+    </div>
+  </div>
+</form>
