@@ -4,6 +4,7 @@ require 'deposits'
 
 RSpec.describe Deposits do
 	before do
+		@deposits = Deposits.new
 		@deposit = Deposit.new('Travel', 4, true)
 		@deposit1 = Deposit.new('Super', 10, false)
 	end
@@ -39,6 +40,14 @@ RSpec.describe Deposits do
       index = 0
       dep_list.add(@deposit)
       expect(dep_list.by_index(index)).to eq(@deposit)
+    end
+	end
+
+	describe '#each' do
+    it 'should return each deposit from deposit list' do
+      @deposits.add(@deposit)
+      @deposits.add(@deposit1)
+      expect(@deposits.each.to_a).to eq([@deposits[0], @deposits[1]])
     end
   end
 end

@@ -75,12 +75,4 @@ class Depositors
   def sort_by_lastname
     @depositors = @depositors.sort_by(&:last_name)
   end
-
-  def get_dep_by_diap(l_range, u_range)
-    dep_list = Depositors.new
-    @depositors.each do |dep|
-      dep_list << dep if dep.dep_amount >= l_range && dep.dep_amount <= u_range
-    end
-    dep_list
-  end
 end

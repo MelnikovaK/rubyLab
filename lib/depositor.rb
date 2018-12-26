@@ -11,7 +11,7 @@ class Depositor
     @middle_name = middle_name.capitalize
     @dep_number = dep_number.to_i
     @dep_type = dep_type.capitalize
-    @dep_amount = dep_amount.to_f
+    @dep_amount = dep_amount.to_i
     @opening_date = opening_date.to_i
   end
 end

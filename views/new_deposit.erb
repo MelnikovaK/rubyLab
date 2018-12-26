@@ -4,18 +4,28 @@
       Введите данные для добавленя нового типа вклада
     </h3>
   </div>
+  <% if @errors && !@errors.empty? %>
+    <div class="large-12 cell">
+      <h4>Ошибка ввода данных</h4>
+    </div>
+    <% @errors.each do |error|%>
+      <div class="large-12 cell">
+        <%= error%>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <form method="post">
   <div class="grid-x grid-padding-x">
     <div class="medium-6 cell">
-      <label>Название депозита
+      <label>Тип
         <input type="text" placeholder="тип" name="type">
       </label>
     </div>
     <div class="medium-6 cell">
       <label>Процент
-        <input type="number" placeholder="12" name="percent">
+        <input type="text" placeholder="12" name="percent">
       </label>
     </div>
     <div class="medium-6 cell">

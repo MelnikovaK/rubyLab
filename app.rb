@@ -4,8 +4,9 @@ require_relative 'lib/deposit'
 require_relative 'lib/depositors'
 require_relative 'lib/depositor'
 require_relative 'lib/query_processing'
+require_relative 'lib/input_checker'
 
-# helpers InputChecker
+helpers InputChecker
 
 configure do
 	set :deposits, Deposits.init_from_file
@@ -15,6 +16,8 @@ end
 get '/' do
 	@deposits = settings.deposits
 	@depositors = settings.depositors
+	puts "#{params["low_n"]}"
+	puts "#{params["high_n"]}"
 	erb :index
 end
 
@@ -23,6 +26,12 @@ get '/deposits/new' do
 end
 
 post '/deposits/new' do
+	@errors = check_deposit_input(params)
+  unless @errors.empty?
+    @type = params['type']
+    @percent = params['percent']
+    return erb :new_deposit
+  end
 	if params["pos_of_replenishment"] === "Да"
 		replenish = true
 	else
@@ -39,6 +48,11 @@ get '/depositors/new' do
 end
 
 post '/depositors/new' do
+	@errors = check_depositor_input(params)
+	unless @errors.empty?
+		@deposits = settings.deposits
+    return erb :new_depositor
+	end
 	depositor = Depositor.new(params["l_name"], params["f_name"], params["m_name"],
                             params["dep_number"], params["dep_type"], 
                             params["dep_amount"], params["opening_date"])
@@ -93,11 +107,4 @@ post '/close' do
 	perc = QueryProcessing.close_deposit(settings.depositors, depositor, deposit)
 	@percents = (perc * 100).to_i.to_f/100
   erb :close 
-end
-
-get '/depositors/calc_dep_amount' do
-  puts "#{settings.depositors}"
-	settings.depositors = settings.depositors.get_dep_by_diap(params["low_n"].to_f, 
-																														params["high_n"].to_f)
-	redirect to('/')
 end

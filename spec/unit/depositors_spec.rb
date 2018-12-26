@@ -10,16 +10,35 @@ RSpec.describe Depositors do
                                'Travel', 5000, 2010)
     @depositor2 = Depositor.new('Melnikov', 'Petr', 'Ivanovich', 4555,
                                'Travel', 3000, 2010)
+    @depositors = Depositors.new
   end
+
   # describe '#read_from_file' do
   #   it 'should read depositors from correct file' do
-  #     list = Depositors.new
-  #     file_name = 'non-existent'
-  #     expect(File).to receive(:readlines).with(file_name).and_return(['1/2', '2/5'])
-  #     list.read_from_file(file_name)
-  #     expect(list.each.to_a).to eq([Depositor.new(1, 2)])
+  #     # expect(File).to receive(:readlines).with(file_name).and_return(['Petrov,Petr,Petrovich,12334,Travel,30000,2010',
+  #     #                                           'Ivanov,Ivan,Ivanovich,12354,Super,5400,2015'])
+  #     @depositors.read_csv_file(File.expand_path('../../data/input2.csv', __dir__))
+  #     expect(@depositors.each.to_a).to eq([Depositor.new('Petrov','Petr','Petrovich',12334,'Travel',30000,2010),
+  #     Depositor.new('Ivanov','Ivan','Ivanovich',12354,'Super',5400,2015)])
   #   end
   # end
+
+  # describe '#init_from_file' do
+  #   it 'should read csv including headers' do
+  #     expect(File).to receive(:exist?).and_return(true)
+  #     @depositors.init_from_file
+  #     expect(@depositors.init_from_file).to eq([Depositor.new('Petrov','Petr','Petrovich',12334,'Travel',30000,2010),
+  #                                              Depositor.new('Ivanov','Ivan','Ivanovich',12354,'Super',5400,2015)])
+  #   end
+  # end
+
+  describe '#each' do
+    it 'should read depositors info from file' do
+      @depositors.add(@depositor)
+      @depositors.add(@depositor1)
+      expect(@depositors.each.to_a).to eq([@depositors[0], @depositors[1]])
+    end
+  end
 
   describe '#add' do
     it 'should add depositor' do
@@ -79,16 +98,6 @@ RSpec.describe Depositors do
       dep_list.add(@depositor1)
       dep_list.add(@depositor)
       expect(dep_list.sort_by_lastname).to eq([@depositor, @depositor1])
-    end
-  end
-
-  describe 'get_dep_by_diap' do
-    it 'should return list of depositors that deposit amount in input range' do
-      dep_list = Depositors.new
-      dep_list << @depositor
-      dep_list << @depositor1
-      dep_list << @depositor2
-      expect(dep_list.get_dep_by_diap(2500, 5000)).to eq(@depositor1, @depositor2)
     end
   end
 end
